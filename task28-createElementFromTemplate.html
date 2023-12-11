@@ -20,9 +20,11 @@
     </template>
     <script>
         function createPost(heading, content) {
+            // получаем шаблон и клонируем его содержимое
             const template = document.getElementById("post-template");
             const clone = template.content.cloneNode(true);
             
+            // добавляем информацию о посте в шаблон
             clone.querySelector(".post__heading").textContent = heading;
             clone.querySelector(".post__content").textContent = content;
 

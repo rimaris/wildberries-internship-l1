@@ -1,5 +1,5 @@
 function outerFunction() {
-    const outerVariable = 42;
+    const outerVariable = "hello world";
   
     function innerFunction() {
       console.log(outerVariable); // Внутренняя функция имеет доступ к outerVariable

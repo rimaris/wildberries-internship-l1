@@ -2,6 +2,7 @@ const skipCharacters = ["\n", " ", "\r", "\t"];
 function parseJsonWithValidation(jsonString) {
   let index = 0;
 
+  // парсим все возможные значения
   function parseValue() {
     const char = jsonString[index];
 
@@ -24,28 +25,36 @@ function parseJsonWithValidation(jsonString) {
     }
   }
 
+  // парсим json-объект
   function parseObject() {
+    // объект всегда начинается с символа '{'
     if (jsonString[index] !== "{") {
       throw new SyntaxError(`Expected '{' at position ${index}`);
     }
     index++;
     const obj = {};
     while (jsonString[index] !== "}") {
+      // пропускаем пробелы перед ключом
       skipSpaces();
       const key = parseString();
+      // пропускаем пробелы между ключом и двоеточием
       skipSpaces();
+      // после ключа должно быть двоеточие
       if (jsonString[index] !== ":") {
         throw new SyntaxError(`Expected ':' at position ${index}`);
       }
       index++;
+      // парсим то, что после двоеточия. Это может быть любое значение
       const value = parseValue();
       obj[key] = value;
+      // пропускаем пробелы после значения
       skipSpaces();
       if (jsonString[index] === ",") {
         index++;
       }
     }
 
+    // в конце объекта должен быть символ '}'
     if (jsonString[index] !== "}") {
       throw new SyntaxError(`Expected '}' at position ${index}`);
     }
@@ -53,17 +62,23 @@ function parseJsonWithValidation(jsonString) {
     return obj;
   }
 
+  // парсим json-массив
   function parseArray() {
+    // в начале массива должен быть символ '['
     if (jsonString[index] !== "[") {
       throw new SyntaxError(`Expected '[' at position ${index}`);
     }
     index++;
     const arr = [];
 
+    // парсим символы, пока массив не закончится
     while (jsonString[index] !== "]") {
+      // парсим очередное значение массива
       const value = parseValue();
       arr.push(value);
+      // пропускаем пробелы между значением и запятой
       skipSpaces();
+      // после значения должна быть запятая
       if (jsonString[index] === ",") {
         index++;
       }
@@ -77,11 +92,13 @@ function parseJsonWithValidation(jsonString) {
   }
 
   function parseString() {
+    // в начале строки должна быть кавычка
     if (jsonString[index] !== '"') {
       throw new SyntaxError(`Expected '"' at position ${index}`);
     }
     index++;
     let value = "";
+    // добавляем символы в value, пока не встретим закрывающуюся кавычку
     while (jsonString[index] !== '"') {
       value += jsonString[index];
       index++;
@@ -91,6 +108,7 @@ function parseJsonWithValidation(jsonString) {
   }
 
   function parseBoolean() {
+    // если первый символ t, значит должно быть true
     if (jsonString[index] === "t") {
       if (jsonString.slice(index, index + 4) === "true") {
         index += 4;
@@ -115,6 +133,7 @@ function parseJsonWithValidation(jsonString) {
 
   function parseNumber() {
     let start = index;
+    // ищем конец числа
     while (
       (jsonString[index] >= "0" && jsonString[index] <= "9") ||
       jsonString[index] === "-" ||
@@ -124,6 +143,7 @@ function parseJsonWithValidation(jsonString) {
     ) {
       index++;
     }
+    // берем подстроку с числом и пытаемся ее парсить
     const numStr = jsonString.slice(start, index);
     const num = parseFloat(numStr);
     if (isNaN(num)) {

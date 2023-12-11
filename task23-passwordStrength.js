@@ -1,3 +1,4 @@
+// храним список критериев, у каждого значение, на которую он увеличивает оценку и предложение по улучшению
 const criteria = [
     {
         check: (password) => password.length > 8,
@@ -35,6 +36,7 @@ function getPasswordStrength(password) {
     let suggestions = [];
     let score = 0;
 
+    // применяем каждый критерий, если он подходит, то увеличиваем счет, а иначе добавляем предложения по улучшению
     criteria.forEach((c) => {
         if (c.check(password)) {
             score += c.score;

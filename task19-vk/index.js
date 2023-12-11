@@ -16,6 +16,7 @@ const saveAPIKeyBtn = document.getElementById("save-api-key-btn");
 const getPostsBtn = document.getElementById("get-posts-btn");
 const widgetContainer = document.querySelector(".widget-container");
 
+// функция будет вызываться после получения постов
 function processFetchResult(fetchResult) {
     currentlyFetching = false;
     if (fetchResult.error) {
@@ -24,14 +25,18 @@ function processFetchResult(fetchResult) {
     }
 
     const fetchedPosts = fetchResult.response.items;
+    // добавляем посты в список постов
     posts = posts.concat(fetchedPosts);
+    // меняем сдвиг
     offset += fetchedPosts.length;
     try {
         localStorage.setItem(POSTS_CACHE_LOCAL_STORAGE_KEY, JSON.stringify(posts))
     } catch {
+        // если не получилось записать, удаляем первые посты
         posts.splice(0, FETCH_POSTS_CNT);
         localStorage.setItem(POSTS_CACHE_LOCAL_STORAGE_KEY, JSON.stringify(posts));
     }
+    // сохраняем сдвиг
     localStorage.setItem(OFFSET_LOCAL_STORAGE_KEY, offset);
     const usage = Math.round(getLocalStoargeUsage()* 100) / 100;
     console.log(`used ${usage}/${localStorageMaxSize} KB of local storage`);

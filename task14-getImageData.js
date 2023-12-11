@@ -15,15 +15,3 @@ function getImageData(url) {
     image.src = url;
   });
 }
-
-// Пример использования:
-const imageUrl = 'https://example.com/image.jpg';
-
-loadImage(imageUrl)
-  .then((image) => {
-    console.log('Изображение успешно загружено:', image);
-    // Теперь у вас есть доступ к изображению, и вы можете использовать его.
-  })
-  .catch((error) => {
-    console.error('Ошибка загрузки изображения:', error);
-  });
