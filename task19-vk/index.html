@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VK Posts</title>
+    <style>
+        .widget-container {
+            width: 300px;
+            height: 400px;
+            overflow: auto; 
+            border: 1px solid #ccc;
+        }
+
+        .post {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .post-title {
+            font-weight: bold;
+        }
+        .post-content {
+            margin-top: 5px;
+        }
+    </style>
+    <script src="../task18-localstorageSize.js"></script>
+    <script src="../task20-localstorageUsage.js"></script>
+</head>
+<body>
+    <input type="text" id="api-key-input" placeholder="api key">
+    <button id="save-api-key-btn">Сохранить api key</button>
+    <button id="get-posts-btn">get posts</button>
+    <div class="widget-container">
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

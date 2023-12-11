@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .post{
+            border: 1px solid black;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <template id="post-template">
+        <div class="post">
+            <h1 class="post__heading"></h1>
+            <div class="post__content"></div>
+        </div>
+    </template>
+    <script>
+        function createPost(heading, content) {
+            const template = document.getElementById("post-template");
+            const clone = template.content.cloneNode(true);
+            
+            clone.querySelector(".post__heading").textContent = heading;
+            clone.querySelector(".post__content").textContent = content;
+
+            document.body.appendChild(clone);
+        }
+        createPost("post1", "post1 content");
+        createPost("post2", "post2 content")
+    </script>
+</body>
+</html>

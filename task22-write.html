@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="write-depth">0</p>
+    <script>
+        let currentDepth = 0;
+        const writeDepthEl = document.getElementById('write-depth');
+        function writeRecursively() {
+            currentDepth += 1;
+            writeDepthEl.textContent = currentDepth-1;
+            document.write('<script>writeRecursively()<\/script>');
+        }
+        writeRecursively();
+    </script>
+</body>
+</html>

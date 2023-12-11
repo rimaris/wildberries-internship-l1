@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form class="my-form">
+        <label>
+            Имя
+            <input type="text" name="first_name">
+        </label>
+        <label>
+            Фамилия
+            <input type="text" name="last_name">
+        </label>
+        <label>
+            Возраст
+            <input type="number" name="age">
+        </label> <br>
+        <button id="send-btn">Отправить</button>
+    </form>
+    <script>
+        function processFormData() {
+            const form = document.querySelector(".my-form");
+            const firstName = form.querySelector('input[name="first_name"]').value;
+            const lastName = form.querySelector('input[name="last_name"]').value;
+            const age = form.querySelector('input[name="age"]').value;
+            alert(`your name: ${firstName}\nyour last name: ${lastName}\nyour age: ${age}`);
+        }
+
+        document.getElementById('send-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            processFormData();
+        });
+    </script>
+</body>
+</html>

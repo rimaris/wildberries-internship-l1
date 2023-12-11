@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .table {
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+        .table, th, td {
+            border: 1px solid;
+        }
+        .table td {
+            width: 130px;
+            word-wrap: break-word;
+        }
+        .table .state-cell {
+            width: 70px;
+        }
+        .table .zip-cell {
+            width: 50px;
+        }
+        .table .address-cell {
+            width: 200px;
+        }
+        .table .tel-cell {
+            width: 110px;
+        }
+        .table .city-cell {
+            width: 180px;
+        }
+        .pagination-buttons {
+            text-align: center;
+        }
+        .sort-icon {
+            width: 15px;
+            height: 15px;
+            position: relative;
+            top: 3px;
+        }
+        .table th a {
+            color: inherit;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><a href="#" class="sort-link sort-link_fname">First name <img class="sort-icon" src="icons/sort.svg"></a></th>
+                <th><a href="#" class="sort-link sort-link_lname">Last name <img class="sort-icon" src="icons/sort.svg"></a></th>
+                <th class="tel-cell"><a href="#" class="sort-link sort-link_tel">Tel <img class="sort-icon" src="icons/sort.svg"></a></th>
+                <th class="address-cell"><a href="#" class="sort-link sort-link_address">Address <img class="sort-icon" src="icons/sort.svg"></a></th>
+                <th class="city-cell"><a href="#" class="sort-link sort-link_city">City <img class="sort-icon" src="icons/sort.svg"></a></th>
+                <th class="state-cell"><a href="#" class="sort-link sort-link_state">State <img class="sort-icon" src="icons/sort.svg"></a></th>
+                <th class="zip-cell"><a href="#" class="sort-link sort-link_zip">Zip<img class="sort-icon" src="icons/sort.svg"></a></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div class="pagination-buttons">
+        <button class="prev-btn">&lt;</button>
+        <button class="next-btn">&gt;</button>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
